@@ -9,25 +9,32 @@ namespace SockMerchant
 {
     class Program
     {
+        static int SockMerchant (int[] ar)
+        {
+            return ar.GroupBy(a => a).Sum(a => a.Count() / 2);
+        }
+
+
         // Complete the sockMerchant function below.
         static int SockMerchant(int n, int[] ar)
         {
             int temp = 0;
             int count = 1;
             int totalCount = 0;
-           if (n >= 1 && n <= 100)
+            if (n >= 1 && n <= 100)
             {
                 Array.Sort(ar, 0, n);
 
 
-                Console.WriteLine("***********");
-                foreach (int ii in ar)
-                {
+                //Console.WriteLine("***********");
+                //PRINT SORTED ARRAY
+                //foreach (int ii in ar)
+                //{
 
-                    Console.Write(ii);
-                    Console.Write(" ");
-                }
-                Console.WriteLine("***********");
+                //    Console.Write(ii);
+                //    Console.Write(" ");
+                //}
+                //Console.WriteLine("***********");
 
 
                 for (int i = 0; i < n; i++)
@@ -40,7 +47,7 @@ namespace SockMerchant
                             //temp = ar[i+1];
                             if (ar[i] == ar[j])
                             {
-                                count += 1;   
+                                count += 1;
                                 temp = ar[i];
                             }
                         }
@@ -57,6 +64,8 @@ namespace SockMerchant
                 }
             }
             return totalCount;
+
+
         }
 
         static void Main(string[] args)
@@ -65,10 +74,11 @@ namespace SockMerchant
 
             int n = Convert.ToInt32(Console.ReadLine());
 
-            int[] ar = Array.ConvertAll(Console.ReadLine().Split(' '), arTemp => Convert.ToInt32(arTemp));
+           // int[] ar = Array.ConvertAll(Console.ReadLine().Split(' '), arTemp => Convert.ToInt32(arTemp));
 
-           // int[] ar = new int[] { 50, 20, 20, 10, 30, 30, 50, 10, 20, 14, 14 };
-            int result = SockMerchant(n, ar);
+           int[] ar = new int[] { 50, 20, 20, 10, 30, 30, 50, 10, 20, 14, 14 };
+           //int result = SockMerchant(n, ar);
+           int result = SockMerchant(ar);   // call LINQ Solution
 
             Console.WriteLine(result);
             Console.ReadLine();
